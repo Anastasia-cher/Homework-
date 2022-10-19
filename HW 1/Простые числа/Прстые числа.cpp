@@ -1,19 +1,21 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include <cmath> 
 
-int simple(int x) {
-    for (int divider = 2; divider <= x**0.5; ++divider) {
-        if ((x % divider) == 0) {
+bool simple(int x) { 
+    for (int divider = 2; divider <= pow(x, 0.5); ++divider) {
+        if (x % divider == 0) {
             return 0;
         }
     }
 }
+
 void main() {
-    int M;
+    int maxNumber;
     printf("Enter max number: ");
-    scanf_s("%d", &M);
+    scanf_s("%d", &maxNumber);
     printf("\n");
-    for (int numder = 2; numder <= M; ++numder) {
+    for (int numder = 2; numder <= maxNumber; ++numder) {
         if (simple(numder)) {
             printf("%d\n", numder);
         }
