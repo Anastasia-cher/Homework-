@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+
 #define size 10
 
 int main() {
@@ -10,10 +11,11 @@ int main() {
         printf("Enter array elements: mas[%d] = ", x);
         scanf("%d", &array[x]);
     }
-
+    
     for (int i = 0; i < size; i++) {
-        if (array[i] == 0)
+        if (array[i] == 0) {
             nullElements++;
+        }
     }
-   printf ("\nThe numder of null elements in the array: %d\n", nullElements);
+printf("\nThe numder of null elements in the array: %d\n", nullElements);
 }
