@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d6c3a7b0-8a9e-410c-ad00-e14adba9c3fb}</ProjectGuid>
-    <RootNamespace>Неполноечастное</RootNamespace>
+    <ProjectGuid>{a797cdf3-ffe3-41eb-99ca-316061e15f74}</ProjectGuid>
+    <RootNamespace>ЧислаФибоначчи</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Неполное частное.cpp" />
+    <ClCompile Include="Числа Фибоначчи.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SWAP.cpp">
+    <ClCompile Include="Возведение числав в степень.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

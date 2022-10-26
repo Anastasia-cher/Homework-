@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication2.cpp">
+    <ClCompile Include="Числа Фибоначчи.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
