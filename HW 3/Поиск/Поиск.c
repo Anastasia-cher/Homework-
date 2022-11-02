@@ -12,7 +12,7 @@ int partition(int array[], int left, int right) {
 		}
 		else if (array[high] >= pivot) {
 			high--;
-		} 
+		}
 		else {
 			const int temp = array[low];
 			array[low] = array[high];
@@ -33,52 +33,113 @@ void qsort(int array[], int left, int right) {
 	}
 }
 
-bool checkSortedArray(int array[], int lengthOfArray)
-{
-	for (int i = 0; i < lengthOfArray - 1; i++)
-	{
-		if (array[i] > array[i + 1])
-		{
+bool search(int array[], int lengthOfArray, const int key) {
+	int left = 0;
+	int right = lengthOfArray - 1;
+	while (left <= right) {
+		const int middle = (left + right) / 2;
+		if (key < array[middle]) {
+			right = middle - 1;
+		}
+		else if (key > array[middle]) {
+			left = middle + 1;
+		}
+		else {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool elementSearchTest() {
+	const int length = 10;
+	int array[length] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	for (int i = 0; i < length; i++) {
+		if (!search(array, length, array[i])) {
+			return false;
+		}
+	}
+	return !(search(array, length, 11) || search(array, length, 0));
+}
+
+
+bool checkSortedArray(int array[], int lengthOfArray) {
+	for (int i = 0; i < lengthOfArray - 1; i++) {
+		if (array[i] > array[i + 1]) {
 			return false;
 		}
 	}
 	return true;
 }
 
-bool tests()
-{
+bool tests() {
 	bool testsPassed = true;
 	const int length = 10;
 	int testArray1[length] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	qsort(testArray1, 0, length - 1);
-	if (!checkSortedArray(testArray1, length))
-	{
+	if (!checkSortedArray(testArray1, length)) {
 		printf("Error in test with array already sorted\n");
 		testsPassed = false;
 	}
 
 	int testArray2[length] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 	qsort(testArray2, 0, length - 1);
-	if (!checkSortedArray(testArray2, length))
-	{
+	if (!checkSortedArray(testArray2, length)) {
 		printf("Error in test with all the identical elements\n");
 		testsPassed = false;
 	}
 
 	int testArray3[length] = { 1, 4, 10, 6, 4, 7, 11, 1, 4, 5 };
 	qsort(testArray3, 0, length - 1);
-	if (!checkSortedArray(testArray3, length))
-	{
+	if (!checkSortedArray(testArray3, length)) {
 		printf("Error when pivot is minimum in array\n");
 		testsPassed = false;
 	}
 
 	int testArray4[length] = { 15, 4, 10, 6, 7, 15, 11, 3, 4, 5 };
 	qsort(testArray4, 0, length - 1);
-	if (!checkSortedArray(testArray4, length))
-	{
+	if (!checkSortedArray(testArray4, length)) {
 		printf("Error when pivot is maximum in array");
 		testsPassed = false;
 	}
+
+	if (!elementSearchTest()) {
+		printf("Error in search of elements");
+		testsPassed = false;
+	}
 	return testsPassed;
+}
+
+int main() {
+	if (tests()) {
+		printf("Input n: ");
+		int n = 0;
+		scanf("%d", &n);
+		printf("Input k: ");
+		int k = 0;
+		scanf("%d", &k);
+		srand(time(nullptr));
+		int* array = new int[n]();
+		printf("Random array: ");
+		for (int i = 0; i < n; i++) {
+			array[i] = rand() % 100;
+			printf("%d ", array[i]);
+		}
+		qsort(array, 0, n - 1);
+
+		printf("\nRandom numbers: ");
+		int* randomNumbers = new int[k]();
+		for (int i = 0; i < k; i++) {
+			randomNumbers[i] = rand() % 100;
+			printf("%d ", randomNumbers[i]);
+		}
+
+		printf("\nNumbers found in array: ");
+		for (int i = 0; i < k; i++) {
+			if (search(array, n, randomNumbers[i])) {
+				printf("%d ", randomNumbers[i]);
+			}
+		}
+	}
+	return 0;
 }
