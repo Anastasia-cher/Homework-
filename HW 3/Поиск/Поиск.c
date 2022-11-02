@@ -114,10 +114,10 @@ int main() {
 	if (tests()) {
 		printf("Input n: ");
 		int n = 0;
-		scanf("%d", &n);
+		scanf_s("%d", &n);
 		printf("Input k: ");
 		int k = 0;
-		scanf("%d", &k);
+		scanf_s("%d", &k);
 		srand(time(nullptr));
 		int* array = new int[n]();
 		printf("Random array: ");
