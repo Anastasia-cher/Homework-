@@ -3,22 +3,16 @@
 #include <time.h>
 #include <climits>
 
-void printArray(int array[], int lengthOfArray)
-{
-	for (int i = 0; i < lengthOfArray; i++)
-	{
+void printArray(int array[], int lengthOfArray) {
+	for (int i = 0; i < lengthOfArray; i++) {
 		printf("%d ", array[i]);
 	}
 }
 
-void sortByBubble(int array[], int lengthOfArray)
-{
-	for (int i = 0; i < lengthOfArray; i++)
-	{
-		for (int j = lengthOfArray - 1; j > i; j--)
-		{
-			if (array[j] < array[j - 1])
-			{
+void sortByBubble(int array[], int lengthOfArray) {
+	for (int i = 0; i < lengthOfArray; i++) {
+		for (int j = lengthOfArray - 1; j > i; j--) {
+			if (array[j] < array[j - 1]) {
 				const int temp = array[j - 1];
 				array[j - 1] = array[j];
 				array[j] = temp;
