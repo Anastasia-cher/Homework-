@@ -1,4 +1,4 @@
-﻿#include "qsort.h"
+﻿#include "qsort2.h"
 
 int partition(int array[], int left, int right)
 {

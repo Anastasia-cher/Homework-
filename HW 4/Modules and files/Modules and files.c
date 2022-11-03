@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "qsort.h"
+#include "qsort2.h"
 #include "Search.h"
 
 bool checkSortedArray(int array[], int lengthOfArray) {
@@ -59,4 +59,33 @@ bool tests() {
 		testsPassed = false;
 	}
 	return testsPassed;
+}
+
+int main() {
+	if (tests()) {
+		FILE* file = fopen("file.txt ", "r");
+		if (!file) {
+			printf("File not found");
+			return 1;
+		}
+		int* array = new int[10000]();
+		int length = 0;
+		while (fscanf_s(file, "%d", &array[length]) != EOF) {
+			length++;
+		}
+		fclose(file);
+		if (length > 0) {
+			printf("Input data:  ");
+			for (int i = 0; i < length; i++) {
+				printf("%d ", array[i]);
+			}
+			qsort(array, 0, length - 1);
+			printf("\nMinimum most frequent element: %d", searchOfMinMostFrequent(array, length));
+		}
+		else {
+			printf("Not enough input data");
+		}
+		delete[] array;
+	}
+	return 0;
 }
