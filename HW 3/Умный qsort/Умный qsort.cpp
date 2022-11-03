@@ -102,8 +102,23 @@ bool tests() {
 	return testsPassed;
 }
 int main() {
-
-
-
+	if (tests()) {
+		printf("Enter the amount of array elements: ");
+		int amountElements = 0;
+		scanf_s("%d", &amountElements);
+		srand(time(nullptr));
+		int* array = new int[amountElements]();
+		printf("\nRandom array: ");
+		for (int i = 0; i < amountElements; i++) {
+			array[i] = rand() % 100;
+			printf("%d ", array[i]);
+		}
+		printf("\nSorted array: ");
+		for (int i = 0; i < amountElements; i++) {
+			qsort(array, 0, amountElements - 1);
+			printf("%d ", array[i]);
+		}
+		printf("\n");
+	}
 	return 0;
 }

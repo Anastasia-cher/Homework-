@@ -3,28 +3,29 @@
 #include <stdio.h>
 #include <locale.h>
 
+struct Book {
+    char name[50];
+    char phone[50];
+};
 
-
-int main() {
-    FILE* file;
-    struct Entry {
-        char name[50];
-        char phone[50];
-    };
-
-    struct Entry phonebook[100] = { 0 };
-    int entriesCounter = 0;
-
-    while (fopen_s(&file, "phonebook.txt", "a")); {
-        if (fscanf_s(file, "%[^-]%*c%*c", phonebook[entriesCounter].name) != EOF) {
-            const int length = strlen(phonebook[entriesCounter].name);
-            phonebook[entriesCounter].name[length - 1] = '\0';
-            fscanf_s(file, "%[^\n]%*c", phonebook[entriesCounter].phone);
-            entriesCounter++;
-        }
-    }
-    fclose(file);
+int countEntriesInBuffer(Book entries[], char const fileName[])
+{
+	FILE* file = fopen(fileName, "a");
+	int entriesCounter = 0;
+	while (!feof(file))
+	{
+		if (fscanf_s(file, "%[^-]%*c%*c", entries[entriesCounter].name) != EOF)
+		{
+			const int length = strlen(entries[entriesCounter].name);
+			entries[entriesCounter].name[length - 1] = '\0';
+			fscanf_s(file, "%[^\n]%*c", entries[entriesCounter].phone);
+			++entriesCounter;
+		}
+	}
+	fclose(file);
+	return entriesCounter;
 }
+
 
 void being() {
     setlocale(LC_ALL, "Rus");
