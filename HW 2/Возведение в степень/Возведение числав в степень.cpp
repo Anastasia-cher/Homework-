@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -37,27 +37,27 @@ int degreeLog(int numberLog, int degreeLog) {
 }
 
 int main() {
-    int n = 0;
-    int d = 0;
+    int number = 0;
+    int degreeOfNumber = 0;
     printf("Enter the numder ");
-    scanf_s("%d", &n);
+    scanf_s("%d", &number);
     printf("Enter the degree of numder ");
-    scanf_s("%d", &d);
-    int answer = degree(n, &d);
+    scanf_s("%d", &degreeOfNumber);
+    int answer = degree(number, &degreeOfNumber);
     if (answer == 0) {
         printf("\nEnter a non-negative degree\n");
     }
     else {
-        printf("\nNumber %d to the power of %d\n", n, answer); 
+        printf("\nNumber %d to the power of %d\n", number, answer); 
     }
    
-    int answerLog = degreeLog(n, d);
+    int answerLog = degreeLog(number, degreeOfNumber);
 
     if (answerLog == 0) {
         printf("");
     }
     else {
-        printf("\nNumber %d to the power of %d\n", n, answerLog);
+        printf("\nNumber %d to the power of %d\n", number, answerLog);
     }
    
 }
