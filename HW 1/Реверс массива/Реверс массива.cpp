@@ -1,28 +1,32 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
+void revers(int array[], int value, int numberOfElements) {
+	for (int i = value; i < numberOfElements / 2; i++) {
+		int temp = array[i + 1];
+		array[i + 1] = array[numberOfElements - i];
+		array[numberOfElements - i] = temp;
+	}
+}
 int main() {
-    const int size = 5;
-    int array1[size] = { 0 };
-    int array2[size] = { 0 };
-
-    for (int x = 0; x < size; x++) {
-        printf("Enter array elements: mas[%d] = ", x);
-        scanf_s("%d", &array1[x]);
-    }
-
-    for (int y = 0; y < size; y++) {
-        printf("Enter array elements: mas[%d] = ", y);
-        scanf_s("%d", &array2[y]);
-    }
-
-    printf("Inverted array: ");
-
-    for (int i = 0; i < size; i++) {
-        array1[i] = array1[size - i - 1];
-        array2[i] = array2[size - i - 1];
-        printf("%d%d", array2[i], array1[i]);
-    }
+    int numberOfElements1 = 0;
+    int numberOfElements2 = 0;
+    printf("Enter number of elements 1: ");
+	scanf_s("%d", &numberofElements1);
+	printf("Enter number of elements 2: ");
+	scanf_s("%d", &numberofElements2);
+	printf("Enter array: ");
+	int array[10000] = {0};
+	for (int i = 0; i < numberOfElements1 + numberOfElements2; i++) {
+		scanf_s("%d", &array[i + 1]);
+	}
+	revers(array, 0, m);
+	revers(array, m, 2 * m + n);
+	revers(array, 0, m + n);
+	printf("Inverted array: ");
+	for (int i = 0; i < m + n; i++) {
+		printf("%d ", array[i + 1]);
+	}
     return 0;
 }
 
