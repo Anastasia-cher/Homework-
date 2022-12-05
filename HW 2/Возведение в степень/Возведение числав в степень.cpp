@@ -36,29 +36,10 @@ int degreeLog(int numberLog, int degreeLog) {
     return result;
 }
 
-<<<<<<< HEAD
 bool testForDegree() {
     int value1 = 1;
     int testDegree1 = 3;
     return degree(value1, testDegree1) == 1;
-=======
-int main() {
-    int number = 0;
-    int degreeOfNumber = 0;
-    printf("Enter the numder ");
-    scanf_s("%d", &number);
-    printf("Enter the degree of numder ");
-    scanf_s("%d", &degreeOfNumber);
-    int answer = degree(number, &degreeOfNumber);
-    if (answer == 0) {
-        printf("\nEnter a non-negative degree\n");
-    }
-    else {
-        printf("\nNumber %d to the power of %d\n", number, answer); 
-    }
-   
-    int answerLog = degreeLog(number, degreeOfNumber);
->>>>>>> f5ccc993a6dec6892ea950293ee9d61213630575
 
     int value2 = -1;
     int testDegree2 = 2;
@@ -106,7 +87,6 @@ bool tests() {
         printf("Error in the exponentiation test");
         testsPassed = false;
     }
-<<<<<<< HEAD
     if (!testForDegreeLog()) {
         printf("Error in the logarithm exponentiation test");
         testsPassed = false;
@@ -138,10 +118,8 @@ int main() {
         else {
             printf("\nNumber %d to the power of %d\n", n, answerLog);
         }
-=======
     else {
         printf("\nNumber %d to the power of %d\n", number, answerLog);
->>>>>>> f5ccc993a6dec6892ea950293ee9d61213630575
     }
    
 }
