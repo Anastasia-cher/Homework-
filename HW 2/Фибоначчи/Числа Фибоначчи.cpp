@@ -123,4 +123,5 @@ int main(void) {
             printf("\nIterative: %d element the Fibonacci number is %d\n", x, resultIter);
         }
     }
+    return 0;
 }
