@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #define size 10
@@ -17,5 +17,6 @@ int main() {
             nullElements++;
         }
     }
-printf("\nThe numder of null elements in the array: %d\n", nullElements);
+    printf("\nThe numder of null elements in the array: %d\n", nullElements);
+    return 0;
 }
