@@ -36,27 +36,39 @@ int fibonacciIter(int n, int *errorCode) {
     return first;
 }
 
-bool testOfFibonacciRecursive() {
+bool testOfFibonacciRecursiveWithNull() {
     int value1 = 0;
     int errorCode = 0;
     return fibonacciRecursive(value1, &errorCode) == 0;
+}
 
+bool testOfFibonacciRecursiveWithTwoElements() {
     int value2 = 2;
+    int errorCode = 0;
     return fibonacciRecursive(value2, &errorCode) == 1;
+}
 
+bool testOfFibonacciRecursive() {
     int value3 = 3;
+    int errorCode = 0;
     return fibonacciRecursive(value3, &errorCode) == 2;
 }
 
-bool testOfFibonacciIter() {
+bool testOfFibonacciIterWithNull() {
     int value1 = 0;
     int errorCode = 0;
     return fibonacciIter(value1, &errorCode) == 0;
+}
 
+bool testOfFibonacciIterWithTwoElements() {
     int value2 = 2;
+    int errorCode = 0;
     return fibonacciIter(value2, &errorCode) == 1;
+}
 
+bool testOfFibonacciIter() {
     int value3 = 3;
+    int errorCode = 0;
     return fibonacciIter(value3, &errorCode) == 2;
 }
 
@@ -70,6 +82,22 @@ bool tests() {
 
     if (!testOfFibonacciIter()) {
         printf("Error in the Iter Fibonacci Test");
+        testsPassed = false;
+    }
+    if (!testOfFibonacciRecursiveWithNull()) {
+        printf("Error in the Recursive Fibonacci Test with null");
+        testsPassed = false;
+    }
+    if (!testOfFibonacciRecursiveWithTwoElements()) {
+        printf("Error in the Recursive Fibonacci Test with two elements");
+        testsPassed = false;
+    }
+    if (!testOfFibonacciIterWithNull()) {
+        printf("Error in the Iter Fibonacci Test with null");
+        testsPassed = false;
+    }
+    if (!testOfFibonacciIterWithTwoElements()) {
+        printf("Error in the Iter Fibonacci Test with two elements");
         testsPassed = false;
     }
     return testsPassed;
