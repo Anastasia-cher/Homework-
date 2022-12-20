@@ -8,6 +8,7 @@ void revers(int array[], int left, int numberOfElements) {
         array[numberOfElements - i] = temp;
     }
 }
+
 int main() {
     int temp1 = 0;
     int temp2 = 0;

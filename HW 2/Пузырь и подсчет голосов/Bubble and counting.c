@@ -69,32 +69,30 @@ void sortByCount(int array[], int lengthOfArray) {
 			index++;
 		}
 	}
-	for (int i = 0; i < numberOfCounters; i++) {
-		free(arrayOfCounters[i]);
-	}
+	free(arrayOfCounters);
 }
 
-bool testOfsearchMaxInArray() {
+bool testOfSarchMaxInArray() {
 	int array[5] = { 3, 4, 2, 5, 1 };
 	return searchMaxInArray(array,5) == 5;
 }
 
-bool testOfsearchMaxInArrayWithAllTheIdenticalElements() {
+bool testOfSarchMaxInArrayWithAllTheIdenticalElements() {
 	int array[4] = { 5, 5, 5, 5 };
 	return searchMaxInArray(array,4) == 5;
 }
 
-bool testOfsearchMinInArray() {
+bool testOfSarchMinInArray() {
 	int array[5] = { 3, 4, 2, 5, 1 };
 	return searchMaxInArray(array, 5) == 1;
 }
 
-bool testOfsearchMinInArrayWithAllTheIdenticalElements() {
+bool testOfSarchMinInArrayWithAllTheIdenticalElements() {
 	int array[4] = { 2, 2, 2, 2 };
 	return searchMinInArray(array, 4) == 2;
 }
 
-bool testOfsortByBubble() {
+bool testOfSrtByBubble() {
 	const int length = 15;
 	int array[length] = {};
 	srand(time(nullptr));
@@ -105,7 +103,7 @@ bool testOfsortByBubble() {
 	return checkSortedArray(array, length);
 }
 
-bool testOfsortByCount() {
+bool testOfSortByCount() {
 	const int length = 15;
 	int array[length] = {};
 	srand(time(nullptr));
@@ -147,7 +145,9 @@ bool tests() {
 }
 
 int main() {
-	if (tests()) {
+	if (!tests()) {
+		return 1;
+	}
 		printf("Enter length of array: ");
 		int length = 0;
 		scanf_s("%d", &length);
@@ -173,9 +173,7 @@ int main() {
 		printf("\nSorted array by Count: ");
 		printArray(arrayForSortByCount, length);
 		printf("\n");
-		for (int i = 0; i < length; i++) {
-			free(arrayForSortByCount[i]);
+		free(arrayForSortByCount);
 		}
-	}
 	return 0;
 }

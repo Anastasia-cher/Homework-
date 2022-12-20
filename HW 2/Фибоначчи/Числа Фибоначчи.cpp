@@ -127,7 +127,9 @@ void testDuration(void) {
 }
 
 int main(void) {
-    if (tests()) {
+    if (!tests()) {
+        return 1;
+    }
         int x = 0;
         printf("Enter the number of the Fibonacci element: ");
         scanf_s("%d", &x);
@@ -150,6 +152,5 @@ int main(void) {
         else {
             printf("\nIterative: %d element the Fibonacci number is %d\n", x, resultIter);
         }
-    }
     return 0;
 }
