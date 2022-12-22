@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 #include <string.h>
 #include <locale.h>
-#include  "List1.h"
+#include  "List.h"
 
 void begin() {
     printf("Введите:\n 0 - выйти\n");
