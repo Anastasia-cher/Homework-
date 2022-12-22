@@ -3,14 +3,19 @@
 #include <cmath> 
 
 bool prime(int x) { 
-    for (int divider = 2; divider <= pow(x, 0.5); ++divider) {
+    if (x == 1) {
+        return true
+    }
+
+    int sqrtNumber = sqrt(x);
+
+    for (int divider = 2; divider <= round(sqrtNumber); ++divider) {
         if (x % divider == 0) {
             return true;
         }
-        else {
-            return false
-        }
     }
+
+    return false;
 }
 
 void main() {
