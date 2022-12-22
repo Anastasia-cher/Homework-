@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void revers(int array[], int left, int numberOfElements) {
-    for (int i = left; i < numberOfElements / 2; i++) {
+void revers(int array[], int left, int size) {
+    for (int i = left; i < size / 2; i++) {
         int temp = array[i + 1];
-        array[i + 1] = array[numberOfElements - i];
-        array[numberOfElements - i] = temp;
+        array[i + 1] = array[size - i];
+        array[size - i] = temp;
     }
 }
 
