@@ -1,5 +1,5 @@
 ﻿#include <stdio.h>
-#include "Cyclic list1.h"
+#include "Cyclic list.h"
 
 int count(int numberOfWarriors, int periodicity) {
     List* list = createList(1);
