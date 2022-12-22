@@ -1,124 +1,156 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <time.h>
 
-void insertionSort(int array[], int left, int right) {
-	for (int i = left + 1; i <= right; i++) {
-		for (int j = i; j > left; j--) {
-			if (array[j] < array[j - 1]) {
-				int const temp = array[j];
-				array[j] = array[j - 1];
-				array[j - 1] = temp;
-			}
-		}
-	}
+#define LENGTH  10
+
+void output(int array[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
 }
 
-int partition(int array[], int left, int right) {
-	const int pivot = array[left];
-	int low = left;
-	int high = right;
-	while (low < high) {
-		if (array[low] < pivot) {
-			low++;
-		}
-		else if (array[high] >= pivot) {
-			high--;
-		}
-		else {
-			const int temp = array[low];
-			array[low] = array[high];
-			array[high] = temp;
-		}
-	}
-	if (low == left) {
-		low = left + 1;
-	}
-	return low;
+void insertionSort(int array[], int low, int high) {
+    for (int i = low; i < high; i++) {
+        int key = array[i];
+        int j = i - 1;
+        while (j >= low && array[j] >= key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = key;
+    }
 }
 
-void qsort(int array[], int left, int right) {
-	if (right - left + 1 < 10) {
-		insertionSort(array, left, right);
-	}
-	else {
-		const int pivot = partition(array, left, right);
-		qsort(array, left, pivot - 1);
-		qsort(array, pivot, right);
-	}
+void swap(int* firstValue, int* secondValue) {
+    int temp = *firstValue;
+    *firstValue = *secondValue;
+    *secondValue = temp;
 }
 
-bool checkSortedArray(int array[], int lengthOfArray) {
-	for (int i = 0; i < lengthOfArray - 1; i++) {
-		if (array[i] > array[i + 1]) {
-			return false;
-		}
-	}
-	return true;
+int partition(int array[], int low, int high) {
+    int pivotValue = array[high];
+
+    int i = low;
+
+    for (int j = low; j < high; j++) {
+        if (array[j] <= pivotValue) {
+            swap(&array[j], &array[i]);
+            i++;
+        }
+    }
+    swap(&array[high], &array[i]);
+    return i;
 }
 
-bool arrayTest(int array[], int lengthOfArray) {
-	qsort(array, 0, lengthOfArray - 1);
-	return checkSortedArray(array, lengthOfArray);
+void quickSort(int array[], int low, int high) {
+    if (high - low + 1 < 10) {
+        insertionSort(array, low, high + 1);
+        return;
+    }
+    if (low < high) {
+        int pivotIndex = partition(array, 0, high);
+        quickSort(array, low, pivotIndex - 1);
+        quickSort(array, pivotIndex + 1, high);
+    }
+}
+
+bool checkSorted(const int array[], int arrayLength) {
+    for (int i = 0; i < arrayLength - 1; i++) {
+        if (array[i] > array[i + 1]) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool tests() {
-	bool testsPassed = true;
-	int array1[9] = { 5, 4, 10, 6, 12, 7, 11, 3, 5 };
-	if (!arrayTest(array1, 9)) {
-		printf("Error in insertion sort\n");
-		testsPassed = false;
-	}
+    bool testsPassed = true;
+    const int arraySize = 100;
+    int* testArray = (int*)malloc(arraySize * sizeof(int));
+    if (testArray == NULL) {
+        printf("Tests failed: No memory\n");
+        testsPassed = false;
+    }
+    for (int i = 0; i < arraySize; i++) {
+        testArray[i] = rand() % 100;
+    }
+    quickSort(testArray, 0, arraySize - 1);
+    if (!checkSorted(testArray, arraySize)) {
+        printf("Error on an array of 100 elements\n");
+        free(testArray);
+        testsPassed = false;
+    }
+    int testArray1[LENGTH] = { 1, 5, 7, 3, 8, 9, 3, 2, 4, 100 };
+    quickSort(testArray1, 0, 9);
+    if (!checkSorted(testArray1, LENGTH)) {
+        printf("Error when pivot is maximum in array\n");
+        free(testArray1);
+        testsPassed = false;
+    }
 
-	int array2[10] = { 5, 4, 10, 6, 12, 7, 11, 3, 5 };
-	if (!arrayTest(array2, 10)) {
-		printf("Error in test with array of 10 elements\n");
-		testsPassed = false;
-	}
+    int testArray2[LENGTH] = { 155, 8, 3, 7, 9, 2, 3, 4, 132, 1 };
+    quickSort(testArray2, 0, 9);
+    if (!checkSorted(testArray2, LENGTH)) {
+        printf("Error when pivot is minimum in array\n");
+        free(testArray2);
+        testsPassed = false;
+    }
 
-	int array3[15] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-	if (!arrayTest(array3, 15)) {
-		printf("Error in test with array already sorted\n");
-		testsPassed = false;
-	}
+    int testArray3[LENGTH] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    quickSort(testArray3, 0, 9);
+    if (!checkSorted(testArray3, LENGTH)) {
+        printf("Error when the elements are the same\n");
+        free(testArray3);
+        testsPassed = false;
+    }
 
-	int array4[15] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-	if (!arrayTest(array4, 15)) {
-		printf("Error in test with all the identical elements\n");
-		testsPassed = false;
-	}
+    int testArray4[LENGTH] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    quickSort(testArray4, 0, 9);
+    if (!checkSorted(testArray4, LENGTH)) {
+        printf("Error when the array is sorted\n");
+        free(testArray4);
+        testsPassed = false;
+    }
 
-	int array5[15] = { 1, 4, 10, 6, 4, 7, 11, 1, 4, 5, 7, 15, 8, 9, 13 };
-	if (!arrayTest(array5, 15)) {
-		printf("Error when pivot is minimum in array\n");
-		testsPassed = false;
-	}
-
-	int array6[15] = { 15, 4, 10, 6, 4, 15, 11, 3, 4, 5, 3, 2, 7, 4, 9 };
-	if (!arrayTest(array6, 15)) {
-		printf("Error when pivot is maximum in array");
-		testsPassed = false;
-	}
-	return testsPassed;
+    free(testArray);
+    return testsPassed;
 }
+
 int main() {
-	if (tests()) {
-		printf("Enter the amount of array elements: ");
-		int amountElements = 0;
-		scanf_s("%d", &amountElements);
-		srand(time(nullptr));
-		int* array = new int[amountElements]();
-		printf("\nRandom array: ");
-		for (int i = 0; i < amountElements; i++) {
-			array[i] = rand() % 100;
-			printf("%d ", array[i]);
-		}
-		printf("\nSorted array: ");
-		for (int i = 0; i < amountElements; i++) {
-			qsort(array, 0, amountElements - 1);
-			printf("%d ", array[i]);
-		}
-		printf("\n");
-	}
-	return 0;
+    if (!tests()) {
+        return 1;
+    }
+    srand(time(0));
+    int size = 0;
+    printf("Enter the size of the array:  ");
+    scanf_s("%d", &size);
+    while (size <= 0) {
+        printf("Invalid input! (size must be greater than 0)\n");
+        printf("Enter the size of the array:  ");
+        scanf_s("%d", &size);
+    }
+
+    int* array = malloc(size * sizeof(int));
+    if (array == NULL) {
+        printf("Out of memory\n");
+        return 1;
+    }
+
+    for (int i = 0; i < size; i++) {
+        printf("Enter the element %d: ", i);
+        scanf_s("%d", &array[i]);
+    }
+
+    printf("\nThe array: ");
+    output(array, size);
+
+    quickSort(array, 0, size - 1);
+
+    printf("\nSorted array: ");
+    output(array, size);
+
+    free(array);
+    return 0;
 }
