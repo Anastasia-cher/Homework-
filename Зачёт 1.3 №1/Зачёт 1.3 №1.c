@@ -71,6 +71,7 @@ bool tests() {
         printf("Error with the random values");
         testsPassed = false;
     }
+    free(array);
     return testsPassed;
 }
 
@@ -82,17 +83,10 @@ int main() {
     int columns = 5;
     srand(time(NULL));
     int** array = (int**)calloc(sizeof(int*), rows);
-    if (array == NULL) {
-        printf("ERROR!\nInsufficient memory\n");
-        return 1;
-    }
     for (int k = 0; k < columns; k++) {
         array[k] = (int*)calloc(sizeof(int), columns);
-        if (array[k] == NULL) {
-            printf("ERROR!\nInsufficient memory\n");
-            return 1;
-        }
     }
+
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             array[i][j] = rand() % 100;
@@ -103,5 +97,6 @@ int main() {
     sort(array, rows, columns);
     printf("Sorted array: \n");
     output(array, rows, columns);
+    free (array)
     return 0;
 }
