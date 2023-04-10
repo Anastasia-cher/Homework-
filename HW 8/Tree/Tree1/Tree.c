@@ -15,7 +15,7 @@ typedef struct Tree {
 } Tree;
 
 Node* getNewNode(int key, char* value) {
-    Node* newNode = malloc(sizeof(Node));
+    Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->key = key;
     newNode->value = value;
     newNode->left = NULL;
@@ -57,7 +57,7 @@ bool search(Node* root, int key) {
 
 char* getValueRecursion(Node* root, int key) {
     if (root == NULL) {
-        return "NULL";
+        return;
     }
     else if (root->key == key) {
         return root->value;
@@ -127,12 +127,12 @@ Node* deleteRecursion(Node* root, int key) {
     }
 }
 
-void deleteViaKey(Tree* tree, int key) {
+void deleteKey(Tree* tree, int key) {
     deleteRecursion(tree->root, key);
 }
 
 Tree* createTree() {
-    Tree* tree = malloc(sizeof(Tree));
+    Tree* tree = (Tree*)malloc(sizeof(Tree));
     tree->root = NULL;
     return tree;
 }
@@ -147,6 +147,6 @@ void postorderRecursion(Node* root) {
     free(root);
 }
 
-void delete(Tree* tree) {
+void deleteTree(Tree* tree) {
     postorderRecursion(tree->root);
 }

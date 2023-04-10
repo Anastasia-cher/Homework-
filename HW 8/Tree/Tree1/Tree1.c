@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "Tree.h"
+#include "Tree.c"
 
 
 void begin() {
@@ -31,7 +31,7 @@ int main() {
             printf("Enter a key: ");
             scanf_s("%d", &key);
             if (contains(tree, key)) {
-                deleteViaKey(tree, key);
+                deleteKey(tree, key);
             }
             printf("Enter a value: ");
             scanf_s("%s", &valueBuffer);
@@ -58,7 +58,7 @@ int main() {
             printf("Enter a key: ");
             scanf_s("%d", &key);
             if (contains(tree, key)) {
-                deleteViaKey(tree, key);
+                deleteKey(tree, key);
             }
         default:
             printf("Invalid input\n");
@@ -78,7 +78,7 @@ bool tests() {
         printf("Insert failed\n");
         return false;
     }
-    if (contains(testTree1, 1)) {
+    if (contains(testTree1, 100)) {
         printf("Insert failed on finding a nonexistent key in the dictionary\n");
         return false;
     }

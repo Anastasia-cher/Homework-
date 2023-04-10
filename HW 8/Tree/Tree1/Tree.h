@@ -1,7 +1,9 @@
 ﻿#pragma once
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-struct Tree;
-
+typedef struct Tree tree;
 
 Tree* createTree();
 // Создание дерева
